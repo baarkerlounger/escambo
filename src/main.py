@@ -27,6 +27,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
 from escambo.define import APP_ID, VERSION
+from escambo.utils.file_chooser import FileDialog
 from gi.repository import Adw, Gio, Gtk
 
 from .window import EscamboWindow
@@ -54,6 +55,23 @@ class EscamboApplication(Adw.Application):
         if not win:
             win = EscamboWindow(application=self)
         win.present()
+
+        self.setup_escambo_actions(win)
+
+    def setup_escambo_actions(self, win: EscamboWindow):
+        self.create_action(
+            "import",
+            lambda *_: FileDialog(win, "Import Collections"),
+            ["<primary>i"],
+        )
+        # self.create_action(
+        #     "on_send", win._EscamboWindow__on_send, ["<primary>Return"]
+        # )
+        # self.create_action(
+        #     "show-response",
+        #     win._EscamboWindow__set_response_visibility,
+        #     ["<primary>r"],
+        # )
 
     def on_about_action(self, widget, _):
         """Callback for the app.about action."""

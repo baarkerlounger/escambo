@@ -1,0 +1,15 @@
+using Gtk 4.0;
+
+template $Collections: ScrolledWindow {
+  hexpand: true;
+
+  ListView list_view {
+    enable-rubberband: false;
+    single-click-activate: false;
+
+    styles [
+      "navigation-sidebar"
+    ]
+  }
+
+}

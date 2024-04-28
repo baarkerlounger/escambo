@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="escambo">
-	<schema id="io.github.cleomenezesjr.Escambo" path="@PREFIX@/">
-	</schema>
+  <schema id="@APP_ID@" path="@PREFIX@/">
+    <key name="collections-list" type="as">
+      <default>["eita", "eitinha"]</default>
+    </key>
+  </schema>
 </schemalist>

@@ -1,0 +1,47 @@
+.badge-listview-method {
+  font-weight: bold;
+  font-size: 0.6em;
+  border-radius: 10px;
+  min-width: 4em;
+  padding: 2px 5px;
+}
+
+.get-badge {
+  color: @success_fg_color;
+  background-color: alpha(@success_bg_color, 0.80);
+}
+
+.post-badge {
+  color: @warning_fg_color;
+  background-color: alpha(@warning_bg_color, 0.80);
+}
+
+.put-badge {
+  color: @accent_fg_color;
+  background-color: alpha(@accent_bg_color, 0.80);
+}
+
+.patch-badge {
+  color: @destructive_fg_color;
+  background-color: alpha(@purple_4, 0.80);
+}
+
+.delete-badge {
+  color: @destructive_fg_color;
+  background-color: alpha(@destructive_bg_color, 0.80);
+}
+
+.head-badge {
+  color: @accent_fg_color;
+  background-color: alpha(@green_2, 0.80);
+}
+
+.head-badge {
+  color: @destructive_fg_color;
+  background-color: alpha(@purple_1, 0.80);
+}
+
+.options-badge {
+  color: @destructive_fg_color;
+  background-color: @purple_1;
+}

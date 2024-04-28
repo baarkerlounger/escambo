@@ -20,4 +20,6 @@ escambo_sources = [
   )
 ]
 
+install_subdir('collections', install_dir: moduledir)
+install_subdir('utils', install_dir: moduledir)
 install_data(escambo_sources, install_dir: moduledir)

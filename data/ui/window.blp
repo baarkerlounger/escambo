@@ -4,31 +4,50 @@ using Adw 1;
 template $EscamboWindow : Adw.ApplicationWindow {
   width-request: 360;
   height-request: 200;
-  default-width: 640;
-  default-height: 480;
+  default-width: 1656;
+  default-height: 884;
   title: _("Escambo");
 
   Adw.Breakpoint {
-    condition ("max-width: 400sp")
+    condition ("max-width: 550sp")
 
     setters {
       split_view.collapsed: true;
+      split_view.show-content: true;
       // button.visible: true;
     }
   }
 
   content: Adw.NavigationSplitView split_view {
-    min-sidebar-width: 300;
+    min-sidebar-width: 370;
     sidebar: Adw.NavigationPage {
-      title: _("Collections");
+      title: _("Sidebar");
       tag: "sidebar";
 
       child: Adw.ToolbarView {
         [top]
-        Adw.HeaderBar {
+        ActionBar action_bar {
+          revealed: true;
+          valign: end;
+
           [start]
-          Button {
-            icon-name: "plus-large-symbolic";
+          MenuButton menu_add_new {
+            menu-model: button_new_menu;
+
+            Adw.ButtonContent {
+              icon-name: "plus-large-symbolic";
+            }
+          }
+
+          [center]
+          Gtk.DropDown sidebar_dropdown_selector {
+            model: StringList {
+              strings [
+                "Collections",
+                "Environments",
+                "History",
+              ]
+            };
           }
 
           [end]
@@ -37,14 +56,25 @@ template $EscamboWindow : Adw.ApplicationWindow {
             icon-name: "open-menu-symbolic";
           }
         }
-        content: Stack stack {
-          transition-type: none;
 
-          Adw.StatusPage status_page {
-            title: _("No Collection Added");
-            description: _("Click \"+\" to create");
-            icon-name: "io.github.cleomenezesjr.Escambo.Devel-symbolic";
-            styles ["compact"]
+        content: Stack stack {
+          transition-type: crossfade;
+
+          StackPage {
+            name: "collections";
+            child:  $Collections collections{ }
+
+            ;
+          }
+
+          StackPage {
+            name: "no-content";
+            child: Adw.StatusPage status_page {
+                icon-name: "io.github.cleomenezesjr.Escambo.Devel-symbolic";
+                styles ["compact"]
+              }
+
+            ;
           }
         };
       };
@@ -73,6 +103,18 @@ template $EscamboWindow : Adw.ApplicationWindow {
   };
 }
 
+menu button_new_menu {
+  // item {
+  //   label: "New Collection";
+  //   action: "app.import_collections";
+  // }
+
+  item {
+    label: "Import Collections";
+    action: "app.import";
+  }
+}
+
 menu menu_app {
   section {
     item {
@@ -86,3 +128,4 @@ menu menu_app {
     }
   }
 }
+

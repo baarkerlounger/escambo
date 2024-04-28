@@ -4,5 +4,5 @@ Exec=escambo
 Icon=@APP_ID@
 Terminal=false
 Type=Application
-Categories=GTK;
+Categories=Game;
 StartupNotify=true
